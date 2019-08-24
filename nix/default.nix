@@ -4,7 +4,7 @@
 let
   nodePkg = (
       import ./node2nix/default.nix { inherit pkgs; }
-    );
+    ).package;
 
   # TODO: Remove, once they're on nixos stable channel
   elmTools = import (pkgs.fetchFromGitHub {
