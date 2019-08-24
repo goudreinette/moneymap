@@ -18,13 +18,13 @@ in pkgs.stdenv.mkDerivation rec {
   name = "moneymap";
   src = pkgs.lib.cleanSource ./..;
 
-  doCheck = true;
+  # doCheck = true;
 
   buildInputs = with pkgs.elmPackages; [
     elm
     # elm-format
-    elmTools.elm-test
-    nodePkg
+    # elmTools.elm-test
+    # nodePkg
     pkgs.nodejs-8_x
   ];
 
@@ -39,6 +39,11 @@ in pkgs.stdenv.mkDerivation rec {
       elmPackages = import ./elm2nix/elm-srcs.nix;
       versionsDat = ./elm2nix/versions.dat;
     }}
+  '';
+
+  buildPhase = ''
+    export PATH=$PATH:${nodePkg}/lib/node_modules/${name}/node_modules/.bin
+    # parcel build --no-cache html/index.html
   '';
 
   installPhase = ''

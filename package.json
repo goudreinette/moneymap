@@ -22,7 +22,6 @@
     "@types/dagre": "^0.7.42",
     "dagre": "^0.8.4",
     "graphlib": "^2.1.7",
-    "node-elm-compiler": "^5.0.4",
     "parcel": "^1.12.3",
     "typescript": "^3.5.3"
   }

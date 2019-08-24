@@ -1,11 +1,13 @@
-ENTRY=html/index.html
+APP_ENTRY=html/index.html
+PATH := $(PATH):node_modules/.bin
 
-# TODO: Avoid npx
+prettier := prettier $options --ignore-path .gitignore '**/*.+(json|ts|html)'
+elm-format := elm-format $options --elm-version=0.19 elm/src elm/tests
 
 
 # Production build
 build:
-	npx parcel build $(ENTRY)
+	parcel build $(APP_ENTRY)
 
 # Install dependencies
 install:
@@ -13,46 +15,45 @@ install:
 
 # Hot reloading development
 dev:
-	npx parcel $(ENTRY) &
+	parcel $(APP_ENTRY)
 
 # Serve module docs
 docs:
-	npx -c 'cd elm; elm-doc-preview --no-browser'
+	cd elm; \
+	elm-doc-preview --no-browser;
 
 # Run the test suite
 test:
-	npx -c 'cd elm; elm-verify-examples'
-	npx -c 'cd elm; elm-test'
+	cd elm; \
+        elm-verify-examples; \
+	elm-format --yes tests/VerifyExamples; \
+	elm-test
 
 # Run the test suite in watch mode
 test_watch:
-	npx watch 'make test' elm/src elm/tests/Tests
+	watch 'make test' elm/src elm/tests/Tests
 
 # Generate typescript types from elm ports
-gen-ts:
-	npx elm-typescript-interop
+gen_ts:
+	elm-typescript-interop
 
-# TODO: Add description
+# Format code
 format:
-        # TODO: Remove duplication
-	npx prettier --write 'elm/**/*.+(json|elm)'
-	npx prettier --write 'ts/**/*.+(json|ts)'
-	npx prettier --write 'html/**/*.html'
+	$(elm-format:$options=--yes)
+	$(prettier:$options=--write)
 
 # Checks if code is formatted correctly
 check_format:
-        # TODO: Remove duplication
-	npx prettier 'elm/**/*.+(json|elm)'
-	npx prettier 'ts/**/*.+(json|ts)'
-	npx prettier 'html/**/*.html'
+	$(elm-format:$options=--validate)
+	$(prettier:$options=--check)
 
-# TODO: Add description
+# Clean dependency directories
 clean:
 	rm -rf node_modules
 	rm -rf elm/elm-stuff
 
 # Generate Nix expressions for CI and deployment
-nix: clean
+gen_nix: clean
 	cd nix/node2nix; \
 	node2nix --nodejs-8 \
 	         --lock ../../package-lock.json \
@@ -60,11 +61,13 @@ nix: clean
 
         # Unfortunately `elm2nix` is not yet distributed via NPM
 	cd elm; \
-	elm2nix convert > ../nix/elm2nix/elm-srcs.nix; \
-	elm2nix snapshot > ./versions.dat; mv ./versions.dat ../nix/elm2nix/versions.dat # TODO: Remove this hack
+	elm2nix convert > elm-srcs.nix; \
+	elm2nix snapshot > versions.dat; \
+	mv elm-srcs.nix versions.dat --target ../nix/elm2nix
 
 # Product build using Nix
 build_nix:
-	nix-build nix/default.nix
+	nix-build nix
 
+# Checks format and tests
 check: check_format test
