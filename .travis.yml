@@ -1,6 +1,13 @@
 language: nix
-nix: 2.2.2
+env:
+  global:
+    - STORE=$HOME/nix-store
+cache:
+  directories:
+    - $STORE
+before_install:
+  - sudo mkdir -p /etc/nix
+  - echo "binary-caches = https://cache.nixos.org/ file://$STORE" | sudo tee -a /etc/nix/nix.conf > /dev/null
 script:
-  - mkdir /tmp
   - export NIX_PATH="nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.03.tar.gz"
-  - nix-build nix/default.nix
+  - nix-build nix/simple.nix
