@@ -1,5 +1,5 @@
 language: nix
 nix: 2.2.2
 script:
-  - export NIX_PATH="nixpkgs=https://github.com/NixOS/nixpkgs/releases/tag/19.03"
+  - export NIX_PATH="nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.03.tar.gz"
   - nix-build nix
