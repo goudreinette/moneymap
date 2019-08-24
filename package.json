@@ -17,12 +17,11 @@
     "url": "https://github.com/reinvdwoerd/moneymap/issues"
   },
   "homepage": "https://github.com/reinvdwoerd/moneymap#readme",
-  "devDependencies": {},
   "dependencies": {
     "@types/dagre": "^0.7.42",
     "dagre": "^0.8.4",
     "node-elm-compiler": "^5.0.4",
-    "parcel": "^1.12.3",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "parcel": "^1.12.3"
   }
 }

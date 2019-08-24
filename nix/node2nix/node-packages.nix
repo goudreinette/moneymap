@@ -7201,7 +7201,7 @@ let
       homepage = "https://github.com/reinvdwoerd/moneymap#readme";
       license = "ISC";
     };
-    production = true;
+    production = false;
     bypassCache = true;
   };
 in
