@@ -41,9 +41,14 @@ in pkgs.stdenv.mkDerivation rec {
     }}
   '';
 
+  checkPhase = ''
+    export ELM_HOME=`pwd`/.elm
+    make check
+  '';
+
   installPhase = ''
     mkdir -p $out
-    cp -r dist $out
+    cp -r dist/* $out
   '';
 
   shellHook = patchPhase;

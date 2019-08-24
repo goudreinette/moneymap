@@ -22,12 +22,17 @@ docs:
 	cd elm; \
 	elm-doc-preview --no-browser;
 
+# Generate tests from documentation examples
+gen-example-tests:
+	cd elm; \
+	elm-verify-examples; \
+	elm-format --yes tests/VerifyExamples;
+
 # Run the test suite
 test:
+	export ELM_HOME=`pwd`/.elm; \
 	cd elm; \
-        elm-verify-examples; \
-# elm-format --yes tests/VerifyExamples; \
-# elm-test
+	elm-test
 
 # Run the test suite in watch mode
 test-watch:
@@ -53,7 +58,7 @@ clean:
 	rm -rf elm/elm-stuff
 
 # Generate Nix expressions for CI and deployment
-gen-nix: clean
+gen-nix: clean gen-example-tests
         # Unfortunately this hack is needed
 	bash sh/node2nix.sh
 

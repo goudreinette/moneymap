@@ -5,6 +5,11 @@
         version = "5.0.0";
       };
 
+      "elm/json" = {
+        sha256 = "0kjwrz195z84kwywaxhhlnpl3p251qlbm5iz6byd6jky2crmyqyh";
+        version = "1.1.3";
+      };
+
       "elm/html" = {
         sha256 = "1n3gpzmpqqdsldys4ipgyl1zacn0kbpc3g4v3hdpiyfjlgh8bf3k";
         version = "1.0.0";
@@ -53,11 +58,6 @@
       "ianmackenzie/elm-triangular-mesh" = {
         sha256 = "0vc2aix77zcc20av88hvyziin25163jpahypzxp7n81vymzzgqg9";
         version = "1.0.2";
-      };
-
-      "elm/json" = {
-        sha256 = "0kjwrz195z84kwywaxhhlnpl3p251qlbm5iz6byd6jky2crmyqyh";
-        version = "1.1.3";
       };
 
       "avh4/elm-fifo" = {
