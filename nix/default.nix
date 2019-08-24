@@ -25,7 +25,6 @@ in pkgs.stdenv.mkDerivation rec {
     elm-format
     elmTools.elm-verify-examples
     elmTools.elm-test
-    pkgs.nodejs-8_x
   ];
 
   patchPhase = ''
