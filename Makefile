@@ -45,7 +45,7 @@ format:
 # Checks if code is formatted correctly
 check-format:
 	$(elm-format:$options=--validate)
-        $(prettier:$options=--check)
+	$(prettier:$options=--check)
 
 # Clean dependency directories
 clean:
@@ -54,10 +54,8 @@ clean:
 
 # Generate Nix expressions for CI and deployment
 gen-nix: clean
-	cd nix/node2nix; \
-	node2nix --nodejs-8 \
-	         --lock ../../package-lock.json \
-	         --input ../../package.json
+        # Unfortunately this hack is needed
+	bash sh/node2nix.sh
 
         # Unfortunately `elm2nix` is not yet distributed via NPM
 	cd elm; \

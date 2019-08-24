@@ -4846,6 +4846,15 @@ let
         sha1 = "21932a549f5e52ffd9a827f570e04be62a97da54";
       };
     };
+    "prettier-1.18.2" = {
+      name = "prettier";
+      packageName = "prettier";
+      version = "1.18.2";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/prettier/-/prettier-1.18.2.tgz";
+        sha512 = "OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==";
+      };
+    };
     "private-0.1.8" = {
       name = "private";
       packageName = "private";
@@ -6417,7 +6426,7 @@ let
     name = "moneymap";
     packageName = "moneymap";
     version = "1.0.0";
-    src = ../../../../../../../../tmp/tmp.UXTiDczNRG;
+    src = ../../../../../../../../tmp/tmp.juLMDzo3MV;
     dependencies = [
       sources."@babel/code-frame-7.0.0"
       (sources."@babel/core-7.3.4" // {
@@ -7185,6 +7194,7 @@ let
       sources."posthtml-parser-0.4.1"
       sources."posthtml-render-1.1.5"
       sources."prelude-ls-1.1.2"
+      sources."prettier-1.18.2"
       sources."private-0.1.8"
       sources."process-0.11.10"
       sources."process-nextick-args-2.0.1"

@@ -6,3 +6,4 @@ elm/tests/VerifyExamples
 .cache/
 dist/
 result
+.elm/
