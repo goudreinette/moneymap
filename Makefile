@@ -30,7 +30,6 @@ gen-example-tests:
 
 # Run the test suite
 test:
-	export ELM_HOME=`pwd`/.elm; \
 	cd elm; \
 	elm-test
 
