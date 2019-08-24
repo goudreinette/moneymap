@@ -30,11 +30,11 @@ test:
 	elm-test
 
 # Run the test suite in watch mode
-test_watch:
+test-watch:
 	watch 'make test' elm/src elm/tests/Tests
 
 # Generate typescript types from elm ports
-gen_ts:
+gen-ts:
 	elm-typescript-interop
 
 # Format code
@@ -43,7 +43,7 @@ format:
 	$(prettier:$options=--write)
 
 # Checks if code is formatted correctly
-check_format:
+check-format:
 	$(elm-format:$options=--validate)
 	$(prettier:$options=--check)
 
@@ -53,7 +53,7 @@ clean:
 	rm -rf elm/elm-stuff
 
 # Generate Nix expressions for CI and deployment
-gen_nix: clean
+gen-nix: clean
 	cd nix/node2nix; \
 	node2nix --nodejs-8 \
 	         --lock ../../package-lock.json \
@@ -66,7 +66,7 @@ gen_nix: clean
 	mv elm-srcs.nix versions.dat --target ../nix/elm2nix
 
 # Product build using Nix
-build_nix:
+build-nix:
 	nix-build nix
 
 # Checks format and tests

@@ -43,7 +43,7 @@ in pkgs.stdenv.mkDerivation rec {
 
   buildPhase = ''
     export PATH=$PATH:${nodePkg}/lib/node_modules/${name}/node_modules/.bin
-    # parcel build --no-cache html/index.html
+    parcel build --no-cache html/index.html
   '';
 
   installPhase = ''

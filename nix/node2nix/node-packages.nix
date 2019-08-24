@@ -2515,6 +2515,24 @@ let
         sha1 = "d544811d428f98eb06a63dc402d2403c328c38f7";
       };
     };
+    "find-elm-dependencies-2.0.2" = {
+      name = "find-elm-dependencies";
+      packageName = "find-elm-dependencies";
+      version = "2.0.2";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/find-elm-dependencies/-/find-elm-dependencies-2.0.2.tgz";
+        sha512 = "nM5UCbccD1G8CGK2GsM7ykG3ksOAl9E+34jiDfl07CAl2OPnLpBVWY2hlxEmIkSBfdJjSopEowWHrO0cI8RhxQ==";
+      };
+    };
+    "firstline-1.2.0" = {
+      name = "firstline";
+      packageName = "firstline";
+      version = "1.2.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/firstline/-/firstline-1.2.0.tgz";
+        sha1 = "c9f4886e7f7fbf0afc12d71941dce06b192aea05";
+      };
+    };
     "for-in-1.0.2" = {
       name = "for-in";
       packageName = "for-in";
@@ -3874,6 +3892,15 @@ let
         sha512 = "2+DuKodWvwRTrCfKOeR24KIc5unKjOh8mz17NCzVnHWfjAdDqbfbjqh7gUT+BkXBRQM52+xCHciKWonJ3CbJMQ==";
       };
     };
+    "node-elm-compiler-5.0.4" = {
+      name = "node-elm-compiler";
+      packageName = "node-elm-compiler";
+      version = "5.0.4";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/node-elm-compiler/-/node-elm-compiler-5.0.4.tgz";
+        sha512 = "VQsT8QSierYGkHzRed+b4MnccQVF1+qPHunE8jBoU7jD6YpuRqCDPzEoC2zfyEJS80qVnlMZrqobLnyjzX9lJg==";
+      };
+    };
     "node-forge-0.7.6" = {
       name = "node-forge";
       packageName = "node-forge";
@@ -5107,6 +5134,15 @@ let
         sha1 = "43374e2e2ca0968b0ef1523460b7d730ff22eeb3";
       };
     };
+    "rimraf-2.6.3" = {
+      name = "rimraf";
+      packageName = "rimraf";
+      version = "2.6.3";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/rimraf/-/rimraf-2.6.3.tgz";
+        sha512 = "mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==";
+      };
+    };
     "rimraf-2.7.1" = {
       name = "rimraf";
       packageName = "rimraf";
@@ -5564,6 +5600,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/symbol-tree/-/symbol-tree-3.2.4.tgz";
         sha512 = "9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==";
+      };
+    };
+    "temp-0.9.0" = {
+      name = "temp";
+      packageName = "temp";
+      version = "0.9.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/temp/-/temp-0.9.0.tgz";
+        sha512 = "YfUhPQCJoNQE5N+FJQcdPz63O3x3sdT4Xju69Gj4iZe0lBKOtnAMi0SLj9xKhGkcGhsxThvTJ/usxtFPo438zQ==";
       };
     };
     "terser-3.17.0" = {
@@ -6600,6 +6645,8 @@ let
           sources."extend-shallow-2.0.1"
         ];
       })
+      sources."find-elm-dependencies-2.0.2"
+      sources."firstline-1.2.0"
       sources."for-in-1.0.2"
       sources."foreach-2.0.5"
       sources."forever-agent-0.6.1"
@@ -6786,6 +6833,7 @@ let
       sources."nanomatch-1.2.13"
       sources."nice-try-1.0.5"
       sources."node-addon-api-1.7.1"
+      sources."node-elm-compiler-5.0.4"
       sources."node-forge-0.7.6"
       (sources."node-libs-browser-2.2.1" // {
         dependencies = [
@@ -7054,6 +7102,11 @@ let
       sources."supports-color-5.5.0"
       sources."svgo-1.3.0"
       sources."symbol-tree-3.2.4"
+      (sources."temp-0.9.0" // {
+        dependencies = [
+          sources."rimraf-2.6.3"
+        ];
+      })
       sources."terser-3.17.0"
       sources."through2-2.0.5"
       sources."timers-browserify-2.0.11"
