@@ -26,8 +26,8 @@ docs:
 test:
 	cd elm; \
         elm-verify-examples; \
-	elm-format --yes tests/VerifyExamples; \
-	elm-test
+# elm-format --yes tests/VerifyExamples; \
+# elm-test
 
 # Run the test suite in watch mode
 test-watch:
@@ -68,5 +68,4 @@ build-nix:
 	nix-build nix
 
 # Checks format and tests
-check: check-format
-# TODO: add test
+check: check-format test

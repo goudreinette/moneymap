@@ -23,7 +23,8 @@ in pkgs.stdenv.mkDerivation rec {
   buildInputs = with pkgs.elmPackages; [
     elm
     elm-format
-    # elmTools.elm-test
+    elmTools.elm-verify-examples
+    elmTools.elm-test
     pkgs.nodejs-8_x
   ];
 

@@ -1,6 +1,6 @@
 TMP=$(mktemp -d)
 
-JQ_EXPR='del(.dependencies["elm-format", "elm-test", "elmi-to-json"])'
+JQ_EXPR='del(.dependencies["elm-format", "elm-test", "elmi-to-json", "elm-verify-examples"])'
 
 jq "$JQ_EXPR" package.json > $TMP/package.json
 jq "$JQ_EXPR" package-lock.json > $TMP/package-lock.json
