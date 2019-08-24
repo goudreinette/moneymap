@@ -1,5 +1,4 @@
 language: nix
 nix: 2.2.2
 script:
-  - nix-env -iA niv -f https://github.com/nmattia/niv/tarball/master
   - nix-build nix
