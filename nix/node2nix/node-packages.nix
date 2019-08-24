@@ -2290,15 +2290,6 @@ let
         sha512 = "eFOJTMyCYb7xtE/caJ6JJu+bhi67WCYNbkGSknu20pmM8Ke/bqOfdnZWxyoGN26JgfxTbXrsCkEw4KheCT/KGg==";
       };
     };
-    "elm-format-0.8.2" = {
-      name = "elm-format";
-      packageName = "elm-format";
-      version = "0.8.2";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/elm-format/-/elm-format-0.8.2.tgz";
-        sha512 = "BRQaVQOGt9gxK1hqSJn1MISxDGdln22PSYzmHMjqpQY3S9OJY/3kPn5HoiH3bHQYQFwC+X0apsMZldK9VxySow==";
-      };
-    };
     "encodeurl-1.0.2" = {
       name = "encodeurl";
       packageName = "encodeurl";
@@ -2587,6 +2578,15 @@ let
         sha512 = "nM5UCbccD1G8CGK2GsM7ykG3ksOAl9E+34jiDfl07CAl2OPnLpBVWY2hlxEmIkSBfdJjSopEowWHrO0cI8RhxQ==";
       };
     };
+    "find-parent-dir-0.3.0" = {
+      name = "find-parent-dir";
+      packageName = "find-parent-dir";
+      version = "0.3.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/find-parent-dir/-/find-parent-dir-0.3.0.tgz";
+        sha1 = "33c44b429ab2b2f0646299c5f9f718f376ff8d54";
+      };
+    };
     "firstline-1.2.0" = {
       name = "firstline";
       packageName = "firstline";
@@ -2648,6 +2648,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz";
         sha1 = "3d8cadd90d976569fa835ab1f8e4b23a105605a7";
+      };
+    };
+    "fs-extra-0.30.0" = {
+      name = "fs-extra";
+      packageName = "fs-extra";
+      version = "0.30.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/fs-extra/-/fs-extra-0.30.0.tgz";
+        sha1 = "f233ffcc08d4da7d432daa449776989db1df93f0";
       };
     };
     "fs-minipass-1.2.6" = {
@@ -3586,6 +3595,15 @@ let
         sha512 = "8Mh9h6xViijj36g7Dxi+Y4S6hNGV96vcJZr/SrlHh1LR/pEn/8j/+qIBbs44YKl69Lrfctp4QD+AdWLTMqEZAQ==";
       };
     };
+    "jsonfile-2.4.0" = {
+      name = "jsonfile";
+      packageName = "jsonfile";
+      version = "2.4.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/jsonfile/-/jsonfile-2.4.0.tgz";
+        sha1 = "3736a2b428b87bbda0cc83b53fa3d633a35c2ae8";
+      };
+    };
     "jsprim-1.4.1" = {
       name = "jsprim";
       packageName = "jsprim";
@@ -3629,6 +3647,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/kind-of/-/kind-of-6.0.2.tgz";
         sha512 = "s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==";
+      };
+    };
+    "klaw-1.3.1" = {
+      name = "klaw";
+      packageName = "klaw";
+      version = "1.3.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/klaw/-/klaw-1.3.1.tgz";
+        sha1 = "4088433b46b3b1ba259d78785d8e96f73ba02439";
       };
     };
     "levn-0.3.0" = {
@@ -3944,6 +3971,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz";
         sha512 = "sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==";
+      };
+    };
+    "murmur-hash-js-1.0.0" = {
+      name = "murmur-hash-js";
+      packageName = "murmur-hash-js";
+      version = "1.0.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/murmur-hash-js/-/murmur-hash-js-1.0.0.tgz";
+        sha1 = "5041049269c96633c866386960b2f4289e75e5b0";
       };
     };
     "mustache-3.0.2" = {
@@ -5521,6 +5557,15 @@ let
         sha1 = "3e935d7ddd73631b97659956d55128e87b5084a3";
       };
     };
+    "split-1.0.1" = {
+      name = "split";
+      packageName = "split";
+      version = "1.0.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/split/-/split-1.0.1.tgz";
+        sha512 = "mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==";
+      };
+    };
     "split-string-3.1.0" = {
       name = "split-string";
       packageName = "split-string";
@@ -5744,6 +5789,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/terser/-/terser-4.2.0.tgz";
         sha512 = "6lPt7lZdZ/13icQJp8XasFOwZjFJkxFFIb/N1fhYEQNoNI3Ilo3KABZ9OocZvZoB39r6SiIk/0+v/bt8nZoSeA==";
+      };
+    };
+    "through-2.3.8" = {
+      name = "through";
+      packageName = "through";
+      version = "2.3.8";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/through/-/through-2.3.8.tgz";
+        sha1 = "0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5";
       };
     };
     "through2-2.0.5" = {
@@ -6313,6 +6367,15 @@ let
         sha512 = "A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==";
       };
     };
+    "xmlbuilder-8.2.2" = {
+      name = "xmlbuilder";
+      packageName = "xmlbuilder";
+      version = "8.2.2";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-8.2.2.tgz";
+        sha1 = "69248673410b4ba42e1a6136551d2922335aa773";
+      };
+    };
     "xmlchars-2.1.1" = {
       name = "xmlchars";
       packageName = "xmlchars";
@@ -6354,7 +6417,7 @@ let
     name = "moneymap";
     packageName = "moneymap";
     version = "1.0.0";
-    src = ../..;
+    src = ../../../../../../../../tmp/tmp.UXTiDczNRG;
     dependencies = [
       sources."@babel/code-frame-7.0.0"
       (sources."@babel/core-7.3.4" // {
@@ -6741,7 +6804,6 @@ let
       sources."ee-first-1.1.1"
       sources."electron-to-chromium-1.3.238"
       sources."elliptic-6.5.0"
-      sources."elm-format-0.8.2"
       sources."encodeurl-1.0.2"
       sources."entities-1.1.2"
       sources."error-ex-1.3.2"
@@ -6797,6 +6859,7 @@ let
         ];
       })
       sources."find-elm-dependencies-2.0.2"
+      sources."find-parent-dir-0.3.0"
       sources."firstline-1.2.0"
       sources."for-in-1.0.2"
       sources."foreach-2.0.5"
@@ -6804,6 +6867,7 @@ let
       sources."form-data-2.3.3"
       sources."fragment-cache-0.2.1"
       sources."fresh-0.5.2"
+      sources."fs-extra-0.30.0"
       sources."fs-minipass-1.2.6"
       sources."fs.realpath-1.0.0"
       sources."fsevents-1.2.9"
@@ -6938,8 +7002,10 @@ let
       sources."json-schema-traverse-0.4.1"
       sources."json-stringify-safe-5.0.1"
       sources."json5-1.0.1"
+      sources."jsonfile-2.4.0"
       sources."jsprim-1.4.1"
       sources."kind-of-6.0.2"
+      sources."klaw-1.3.1"
       sources."levn-0.3.0"
       sources."lodash-4.17.15"
       sources."lodash.clone-4.5.0"
@@ -6987,6 +7053,7 @@ let
         ];
       })
       sources."ms-2.1.2"
+      sources."murmur-hash-js-1.0.0"
       sources."mustache-3.0.2"
       sources."nan-2.14.0"
       sources."nanomatch-1.2.13"
@@ -7241,6 +7308,7 @@ let
       sources."source-map-resolve-0.5.2"
       sources."source-map-support-0.5.13"
       sources."source-map-url-0.4.0"
+      sources."split-1.0.1"
       sources."split-string-3.1.0"
       sources."sprintf-js-1.0.3"
       sources."sshpk-1.16.1"
@@ -7277,6 +7345,7 @@ let
         ];
       })
       sources."terser-3.17.0"
+      sources."through-2.3.8"
       sources."through2-2.0.5"
       sources."timers-browserify-2.0.11"
       sources."timsort-0.3.0"
@@ -7362,6 +7431,7 @@ let
       sources."wrappy-1.0.2"
       sources."ws-5.2.2"
       sources."xml-name-validator-3.0.0"
+      sources."xmlbuilder-8.2.2"
       sources."xmlchars-2.1.1"
       sources."xtend-4.0.2"
       sources."yallist-2.1.2"

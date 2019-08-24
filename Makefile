@@ -45,7 +45,7 @@ format:
 # Checks if code is formatted correctly
 check-format:
 	$(elm-format:$options=--validate)
-        # $(prettier:$options=--check)
+        $(prettier:$options=--check)
 
 # Clean dependency directories
 clean:

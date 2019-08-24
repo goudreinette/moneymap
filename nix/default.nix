@@ -18,11 +18,11 @@ in pkgs.stdenv.mkDerivation rec {
   name = "moneymap";
   src = pkgs.lib.cleanSource ./..;
 
-  # doCheck = true;
+  doCheck = true;
 
   buildInputs = with pkgs.elmPackages; [
     elm
-    # elm-format
+    elm-format
     # elmTools.elm-test
     pkgs.nodejs-8_x
   ];
