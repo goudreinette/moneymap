@@ -1,4 +1,6 @@
 language: nix
 nix: 2.2.2
 script:
+  - nix-channel --add https://nixos.org/channels/nixpkgs-stable
+  - nix-channel --update
   - nix-build nix
