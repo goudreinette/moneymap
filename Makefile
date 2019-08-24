@@ -34,9 +34,17 @@ gen-ts:
 
 # TODO: Add description
 format:
-	npx prettier --write 'elm/**/*.json'
+        # TODO: Remove duplication
+	npx prettier --write 'elm/**/*.+(json|elm)'
 	npx prettier --write 'ts/**/*.+(json|ts)'
 	npx prettier --write 'html/**/*.html'
+
+# Checks if code is formatted correctly
+check_format:
+        # TODO: Remove duplication
+	npx prettier 'elm/**/*.+(json|elm)'
+	npx prettier 'ts/**/*.+(json|ts)'
+	npx prettier 'html/**/*.html'
 
 # TODO: Add description
 clean:
@@ -53,9 +61,10 @@ nix: clean
         # Unfortunately `elm2nix` is not yet distributed via NPM
 	cd elm; \
 	elm2nix convert > ../nix/elm2nix/elm-srcs.nix; \
-	# TODO: Remove this hack
-	elm2nix snapshot > ./versions.dat; mv ./versions.dat ../nix/elm2nix/versions.dat
+	elm2nix snapshot > ./versions.dat; mv ./versions.dat ../nix/elm2nix/versions.dat # TODO: Remove this hack
 
 # Product build using Nix
 build_nix:
 	nix-build nix/default.nix
+
+check: check_format test
