@@ -19,7 +19,9 @@
   "homepage": "https://github.com/reinvdwoerd/moneymap#readme",
   "dependencies": {
     "@types/dagre": "^0.7.42",
+    "binwrap": "^0.2.2",
     "dagre": "^0.8.4",
+    "elm-format": "^0.8.2",
     "node-elm-compiler": "^5.0.4",
     "parcel": "^1.12.3",
     "typescript": "^3.5.3"
