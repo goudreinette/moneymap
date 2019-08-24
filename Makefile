@@ -1,12 +1,15 @@
 ENTRY=html/index.html
 
-# Install dependencies
-install:
-	npm install
+# TODO: Avoid npx
+
 
 # Production build
 build:
 	npx parcel build $(ENTRY)
+
+# Install dependencies
+install:
+	npm install
 
 # Hot reloading development
 dev:
@@ -29,11 +32,30 @@ test_watch:
 gen-ts:
 	npx elm-typescript-interop
 
+# TODO: Add description
 format:
 	npx prettier --write 'elm/**/*.json'
 	npx prettier --write 'ts/**/*.+(json|ts)'
 	npx prettier --write 'html/**/*.html'
 
+# TODO: Add description
 clean:
 	rm -rf node_modules
 	rm -rf elm/elm-stuff
+
+# Generate Nix expressions for CI and deployment
+nix: clean
+	cd nix/node2nix; \
+	node2nix --nodejs-8 \
+	         --lock ../../package-lock.json \
+	         --input ../../package.json
+
+        # Unfortunately `elm2nix` is not yet distributed via NPM
+	cd elm; \
+	elm2nix convert > ../nix/elm2nix/elm-srcs.nix; \
+	# TODO: Remove this hack
+	elm2nix snapshot > ./versions.dat; mv ./versions.dat ../nix/elm2nix/versions.dat
+
+# Product build using Nix
+build_nix:
+	nix-build nix/default.nix
