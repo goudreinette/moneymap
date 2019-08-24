@@ -45,7 +45,7 @@ format:
 # Checks if code is formatted correctly
 check-format:
 	$(elm-format:$options=--validate)
-	$(prettier:$options=--check)
+        # $(prettier:$options=--check)
 
 # Clean dependency directories
 clean:
@@ -70,4 +70,5 @@ build-nix:
 	nix-build nix
 
 # Checks format and tests
-check: check_format test
+check: check-format
+# TODO: add test
