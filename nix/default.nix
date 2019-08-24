@@ -1,7 +1,19 @@
-{ pkgs ? import <nixpkgs> {}
+{
+  nixpkgs ? import <nixpkgs> {}
+, compiler ? "default"
+, doBenchmark ? false
+, sources ? import ./sources.nix
 }:
 
 let
+  niv = import sources.nixpkgs {
+    overlays = [
+      (_ : _ : { niv = import sources.niv {}; })
+    ] ;
+    config = {};
+  };
+  inherit (niv) pkgs;
+
   nodePkg = (
       import ./node2nix/default.nix { inherit pkgs; }
     ).package;
