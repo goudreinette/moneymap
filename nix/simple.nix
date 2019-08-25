@@ -17,6 +17,8 @@ in pkgs.stdenv.mkDerivation rec {
 
   src = pkgs.lib.cleanSource ./..;
 
+  doCheck = true;
+
   buildCommand = ''
     mkdir -p $out
     touch $out/abc.txt
