@@ -34,10 +34,7 @@ in pkgs.stdenv.mkDerivation rec {
 
     # Create `.elm`
     rm -rf elm-stuff
-    ${pkgs.elmPackages.fetchElmDeps {
-      elmPackages = import ./elm2nix/elm-srcs.nix;
-      versionsDat = ./elm2nix/versions.dat;
-    }}
+
   '';
 
   installPhase = ''
