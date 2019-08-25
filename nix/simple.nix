@@ -15,6 +15,7 @@ let
 in pkgs.stdenv.mkDerivation rec {
   name =  "moneymap";
 
+  src = pkgs.lib.cleanSource ./..;
 
   buildCommand = ''
     mkdir -p $out
