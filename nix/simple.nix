@@ -28,12 +28,18 @@ in pkgs.stdenv.mkDerivation rec {
 
 
   patchPhase = ''
-
+    echo 1
   '';
 
   installPhase = ''
     mkdir -p $out
     cp -r dist/* $out
+  '';
+
+
+  installPhase = ''
+    mkdir -p $out
+    touch $out/abc.txt
   '';
 
 }
