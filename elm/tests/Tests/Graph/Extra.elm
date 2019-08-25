@@ -85,7 +85,7 @@ zipWith =
                             (Just <|
                                 Graph.fromNodesAndEdges
                                     [ Node 0 ( "A1", "A2" ), Node 1 ( "B1", "B2" ) ]
-                                    [ Edge 0 1 ( "e1", "e2" ) ]
+                                    [ Edge 0 1 ( "e1", "e2x" ) ]
                             )
             ]
         ]
