@@ -19,6 +19,13 @@ in pkgs.stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  buildInputs = with pkgs.elmPackages; [
+    elm
+    elm-format
+    elmTools.elm-verify-examples
+    elmTools.elm-test
+  ];
+
   buildCommand = ''
     mkdir -p $out
     touch $out/abc.txt
