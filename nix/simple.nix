@@ -28,7 +28,7 @@ in pkgs.stdenv.mkDerivation rec {
 
 
   patchPhase = ''
-
+    rm -rf node_modules
     echo 1
   '';
 
