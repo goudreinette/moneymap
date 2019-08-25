@@ -31,11 +31,6 @@ in pkgs.stdenv.mkDerivation rec {
     echo 1
   '';
 
-  installPhase = ''
-    mkdir -p $out
-    cp -r dist/* $out
-  '';
-
 
   installPhase = ''
     mkdir -p $out
