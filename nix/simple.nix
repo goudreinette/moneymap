@@ -13,7 +13,7 @@ let
   }) { inherit pkgs; };
 
 in pkgs.stdenv.mkDerivation rec {
-  name = "moneymap";
+  name =  "moneymap";
 
   src = pkgs.lib.cleanSource ./..;
 
