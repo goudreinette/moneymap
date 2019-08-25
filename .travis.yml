@@ -10,4 +10,4 @@ before_install:
   - echo "binary-caches = https://cache.nixos.org/ file://$STORE" | sudo tee -a /etc/nix/nix.conf > /dev/null
 script:
   - export NIX_PATH="nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.03.tar.gz"
-  - nix-build nix/default2.nix
+  - nix-build nix/simple.nix

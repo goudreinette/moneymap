@@ -17,14 +17,13 @@ in pkgs.stdenv.mkDerivation rec {
 
   src = pkgs.lib.cleanSource ./..;
 
-  doCheck = true;
-
   buildInputs = with pkgs.elmPackages; [
     elm
     elm-format
     elmTools.elm-verify-examples
     elmTools.elm-test
   ];
+
 
   patchPhase = ''
     # Link `node_modules`
@@ -33,16 +32,12 @@ in pkgs.stdenv.mkDerivation rec {
 
     # Create `.elm`
     rm -rf elm-stuff
-    ${pkgs.elmPackages.fetchElmDeps {
-      elmPackages = import ./elm2nix/elm-srcs.nix;
-      versionsDat = ./elm2nix/versions.dat;
-    }}
+
   '';
 
-  installPhase = ''
+
+  buildCommand = ''
     mkdir -p $out
-    cp -r dist/* $out
+    touch $out/abc.txt
   '';
-
-  shellHook = patchPhase;
 }
