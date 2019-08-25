@@ -45,8 +45,4 @@ in pkgs.stdenv.mkDerivation rec {
     cp -r dist/* $out
   '';
 
-  buildCommand = ''
-    mkdir -p $out
-    touch $out/abc.txt
-  '';
 }
