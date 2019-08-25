@@ -28,6 +28,10 @@ in pkgs.stdenv.mkDerivation rec {
 
 
   patchPhase = ''
+    # Link `node_modules`
+    rm -rf node_modules
+    ln -sf ${nodePkg}/lib/node_modules/${name}/node_modules .
+
     echo 1
   '';
 
