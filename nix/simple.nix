@@ -26,6 +26,20 @@ in pkgs.stdenv.mkDerivation rec {
     elmTools.elm-test
   ];
 
+
+  patchPhase = ''
+    # Link `node_modules`
+    rm -rf node_modules
+    ln -sf ${nodePkg}/lib/node_modules/${name}/node_modules .
+
+    # Create `.elm`
+    rm -rf elm-stuff
+    ${pkgs.elmPackages.fetchElmDeps {
+      elmPackages = import ./elm2nix/elm-srcs.nix;
+      versionsDat = ./elm2nix/versions.dat;
+    }}
+  '';
+
   buildCommand = ''
     mkdir -p $out
     touch $out/abc.txt
