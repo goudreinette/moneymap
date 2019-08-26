@@ -30,8 +30,10 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
+    "@types/mocha": "^5.2.7",
     "dagre": "^0.8.4",
     "elm-doc-preview": "^3.0.0",
-    "elm-verify-examples": "^4.0.1"
+    "elm-verify-examples": "^4.0.1",
+    "mocha": "^6.2.0"
   }
 }
