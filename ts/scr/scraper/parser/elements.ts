@@ -1,29 +1,21 @@
-import request, { RequestPromise } from "request-promise-native";
-import { JSDOM } from "jsdom";
 import * as _ from "lodash";
-import * as querystring from "querystring";
-
-export const ERRORS = {
-  notFound: `NOT_FOND`,
-  isEmpty: "IS_EMPTY",
-  noText: "NO_TEXT",
-  NaN: "NAN"
-};
 
 type Select = Array<{ text: string }>;
 
 type Table = Array<Array<HTMLTableDataCellElement>>;
+
+type Link = { href: string; content: HTMLLinkElement };
 
 export const parseSelect = (
   parentNode: ParentNode,
   refinement: string = ""
 ): Select => {
   const selectElement = parentNode.querySelector(`select${refinement}`);
-  if (!selectElement) throw ERRORS.notFound;
+  if (!selectElement) throw new Error("Element not found: select");
   const elementsOption = selectElement.querySelectorAll("option");
 
   return _.map(elementsOption, ({ textContent }) => {
-    if (!textContent) throw ERRORS.noText;
+    if (!textContent) throw new Error("text empty");
 
     return { text: textContent };
   });
@@ -34,7 +26,7 @@ export const parseTable = (
   refinement: string = ""
 ): Table => {
   const table = parentNode.querySelector(`table${refinement}`);
-  if (!table) throw ERRORS.notFound;
+  if (!table) throw new Error("Element not found: table");
   const rows = table.querySelectorAll("tr");
 
   return _.map(rows, row => {
@@ -43,12 +35,12 @@ export const parseTable = (
   });
 };
 
-export const parseCycles = (document: ParentNode): Array<number> => {
-  const formElement = document.querySelector("#rightColumn > form");
-  if (!formElement) throw ERRORS.notFound;
-  const options = parseSelect(formElement as HTMLSelectElement);
+export const parseLink = (
+  parentNode: ParentNode,
+  refinement: string = ""
+): Link => {
+  const link = parentNode.querySelector(`a${refinement}`) as HTMLLinkElement;
+  if (!link) throw new Error("Element not found: a");
 
-  return options
-    .map(({ text }) => parseInt(text, 10))
-    .filter(text => !_.isNaN(text));
+  return { href: link.href, content: link };
 };
