@@ -34,12 +34,16 @@ const api = {
   }
 };
 
-const getCycles = (): Promise<Array<number>> =>
+export const getCycles = (): Promise<Array<number>> =>
   request(api.openSecrets.orgs.list({}))
     .then(parseDocument)
     .then(parser.parseCycles);
 
-const getOrganisationIds = (cycle: number): Promise<Array<string>> =>
+export const getOrganisationIds = ({
+  cycle
+}: {
+  cycle: number;
+}): Promise<Array<string>> =>
   request(api.openSecrets.orgs.list({ cycle }))
     .then(parseDocument)
     .then(parser.parseOrganisationIds);

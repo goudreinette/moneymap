@@ -26,6 +26,10 @@ describe("parser", () => {
       const html = `
         <table id="id">
           <tr>
+            <th>A<th>
+            <th>B<th>
+          </tr>
+          <tr>
             <td>1-1</td>
             <td>1-2</td>
           </tr>

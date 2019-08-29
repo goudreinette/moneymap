@@ -27,7 +27,11 @@ export const parseTable = (
 ): Table => {
   const table = parentNode.querySelector(`table${refinement}`);
   if (!table) throw new Error("Element not found: table");
-  const rows = table.querySelectorAll("tr");
+  const rows = _.toArray(table.querySelectorAll("tr"));
+
+  if (rows[0] && rows[0].querySelector("th")) {
+    rows.shift();
+  }
 
   return _.map(rows, row => {
     const column = row.querySelectorAll("td");
