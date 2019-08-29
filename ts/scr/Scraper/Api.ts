@@ -1,28 +1,24 @@
-import request, { RequestPromise } from "request-promise-native";
+import request from "request-promise-native";
 import { JSDOM } from "jsdom";
 import * as _ from "lodash";
-import * as parser from "./parser";
-import * as querystring from "querystring";
-import * as types from "../types";
-
-const parseDocument = (body: string): Document =>
-  new JSDOM(body).window.document;
+import * as Parser from "./Parser";
+import { Recipient, Organisation } from "./Types";
 
 export const getCycles = (): Promise<Array<number>> =>
   request
     .get({ url: "https://www.opensecrets.org/orgs/list.php" })
-    .then(parseDocument)
-    .then(parser.parseCycles);
+    .then(body => new JSDOM(body).window.document)
+    .then(Parser.parseCycles);
 
 export const getOrganisations = ({
   cycle
 }: {
   cycle: number;
-}): Promise<Array<types.Organisation>> =>
+}): Promise<Array<Organisation>> =>
   request
     .get({ url: "https://www.opensecrets.org/orgs/list.php", qs: { cycle } })
-    .then(parseDocument)
-    .then(parser.parseOrganisations);
+    .then(body => new JSDOM(body).window.document)
+    .then(Parser.parseOrganisations);
 
 export const getRecipients = ({
   id,
@@ -30,11 +26,11 @@ export const getRecipients = ({
 }: {
   id: string;
   cycle: number;
-}): Promise<Array<types.Recipient>> =>
+}): Promise<Array<Recipient>> =>
   request
     .get({
       url: "https://www.opensecrets.org/orgs/summary.php",
       qs: { id, cycle }
     })
-    .then(parseDocument)
-    .then(parser.parseRecipients);
+    .then(body => new JSDOM(body).window.document)
+    .then(Parser.parseRecipients);

@@ -1,23 +1,32 @@
 import * as _ from "lodash";
 
+// Types
+
 type Select = Array<{ text: string }>;
 
 type Table = Array<Array<HTMLTableDataCellElement>>;
 
 type Link = { href: string; content: HTMLLinkElement };
 
+// Errors
+
+const errors = {
+  NOT_FOUND: (selector: string) => `Element not found: ${selector}`
+};
+
+// Functions
+
 export const parseSelect = (
   parentNode: ParentNode,
   refinement: string = ""
 ): Select => {
-  const selectElement = parentNode.querySelector(`select${refinement}`);
-  if (!selectElement) throw new Error("Element not found: select");
+  const selector = `select${refinement}`;
+  const selectElement = parentNode.querySelector(selector);
+  if (!selectElement) throw new Error(errors.NOT_FOUND(selector));
   const elementsOption = selectElement.querySelectorAll("option");
 
   return _.map(elementsOption, ({ textContent }) => {
-    if (!textContent) throw new Error("text empty");
-
-    return { text: textContent };
+    return { text: textContent || "" };
   });
 };
 
@@ -25,8 +34,9 @@ export const parseTable = (
   parentNode: ParentNode,
   refinement: string = ""
 ): Table => {
-  const table = parentNode.querySelector(`table${refinement}`);
-  if (!table) throw new Error("Element not found: table");
+  const selector = `table${refinement}`;
+  const table = parentNode.querySelector(selector);
+  if (!table) throw new Error(errors.NOT_FOUND(selector));
   const rows = _.toArray(table.querySelectorAll("tr"));
 
   if (rows[0] && rows[0].querySelector("th")) {
@@ -43,8 +53,9 @@ export const parseLink = (
   parentNode: ParentNode,
   refinement: string = ""
 ): Link => {
-  const link = parentNode.querySelector(`a${refinement}`) as HTMLLinkElement;
-  if (!link) throw new Error("Element not found: a");
+  const selector = `a${refinement}`;
+  const link = parentNode.querySelector(selector) as HTMLLinkElement;
+  if (!link) throw new Error(errors.NOT_FOUND(selector));
 
   return { href: link.href, content: link };
 };

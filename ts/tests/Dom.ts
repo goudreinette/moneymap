@@ -1,4 +1,4 @@
-import * as elementsParser from "../../../scr/scraper/parser/elements";
+import * as Dom from "../scr/Dom";
 
 import * as assert from "assert";
 import { JSDOM } from "jsdom";
@@ -14,7 +14,7 @@ describe("parser.elements", () => {
         </select>
       `;
       const document = new JSDOM(html).window.document;
-      const actual = elementsParser.parseSelect(document);
+      const actual = Dom.parseSelect(document);
       const expected = [{ text: "Aaa" }, { text: "Bbb" }];
 
       assert.deepEqual(actual, expected);
@@ -40,9 +40,9 @@ describe("parser.elements", () => {
         </table>
       `;
       const document = new JSDOM(html).window.document;
-      const actual = elementsParser
-        .parseTable(document, "#id")
-        .map(row => row.map(col => col.textContent));
+      const actual = Dom.parseTable(document, "#id").map(row =>
+        row.map(col => col.textContent)
+      );
       const expected = [["1-1", "1-2"], ["2-1", "2-2"]];
 
       assert.deepEqual(actual, expected);
@@ -56,7 +56,7 @@ describe("parser.elements", () => {
       `;
       const document = new JSDOM(html).window.document;
       const actual = _.update(
-        elementsParser.parseLink(document, "#id"),
+        Dom.parseLink(document, "#id"),
         "content",
         x => x.textContent || ""
       );
