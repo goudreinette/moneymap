@@ -14,7 +14,12 @@ type Select = Array<{ text: string }>;
 
 type Table = Array<Array<HTMLTableDataCellElement>>;
 
-export const parseSelect = (selectElement: HTMLSelectElement): Select => {
+export const parseSelect = (
+  parentNode: ParentNode,
+  refinement: string = ""
+): Select => {
+  const selectElement = parentNode.querySelector(`select${refinement}`);
+  if (!selectElement) throw ERRORS.notFound;
   const elementsOption = selectElement.querySelectorAll("option");
 
   return _.map(elementsOption, ({ textContent }) => {
@@ -24,8 +29,13 @@ export const parseSelect = (selectElement: HTMLSelectElement): Select => {
   });
 };
 
-export const parseTable = (selectElement: HTMLTableElement): Table => {
-  const rows = selectElement.querySelectorAll("tr");
+export const parseTable = (
+  parentNode: ParentNode,
+  refinement: string = ""
+): Table => {
+  const table = parentNode.querySelector(`table${refinement}`);
+  if (!table) throw ERRORS.notFound;
+  const rows = table.querySelectorAll("tr");
 
   return _.map(rows, row => {
     const column = row.querySelectorAll("td");
@@ -34,9 +44,9 @@ export const parseTable = (selectElement: HTMLTableElement): Table => {
 };
 
 export const parseCycles = (document: ParentNode): Array<number> => {
-  const selectElement = document.querySelector("#rightColumn > form > select");
-  if (!selectElement) throw ERRORS.notFound;
-  const options = parseSelect(selectElement as HTMLSelectElement);
+  const formElement = document.querySelector("#rightColumn > form");
+  if (!formElement) throw ERRORS.notFound;
+  const options = parseSelect(formElement as HTMLSelectElement);
 
   return options
     .map(({ text }) => parseInt(text, 10))

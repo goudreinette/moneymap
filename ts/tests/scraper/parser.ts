@@ -8,15 +8,12 @@ describe("parser", () => {
     it("parses the element", () => {
       const html = `
         <select>
-            <option>Aaa</option>
-            <option>Bbb</option>
+          <option>Aaa</option>
+          <option>Bbb</option>
         </select>
       `;
-      const selectElement = new JSDOM(html).window.document.querySelector(
-        "select"
-      );
-      if (!selectElement) return;
-      const actual = parser.parseSelect(selectElement);
+      const document = new JSDOM(html).window.document;
+      const actual = parser.parseSelect(document);
       const expected = [{ text: "Aaa" }, { text: "Bbb" }];
 
       assert.deepEqual(actual, expected);
@@ -26,7 +23,7 @@ describe("parser", () => {
   describe("parseTable", () => {
     it("parses the element", () => {
       const html = `
-        <table>
+        <table id="id">
           <tr>
             <td>1-1</td>
             <td>1-2</td>
@@ -37,12 +34,9 @@ describe("parser", () => {
           </tr>
         </table>
       `;
-      const tableElement = new JSDOM(html).window.document.querySelector(
-        "table"
-      );
-      if (!tableElement) return;
+      const document = new JSDOM(html).window.document;
       const actual = parser
-        .parseTable(tableElement)
+        .parseTable(document, "#id")
         .map(row => row.map(col => col.textContent));
       const expected = [["1-1", "1-2"], ["2-1", "2-2"]];
 
@@ -54,13 +48,13 @@ describe("parser", () => {
     it("parses the element", () => {
       const html = `
         <div id="rightColumn">
-            <form>
-                <select>
-                    <option>1999</option>
-                    <option>2000</option>
-                    <option>2001</option>
-                </select>
-            </form>
+          <form>
+            <select>
+              <option>1999</option>
+              <option>2000</option>
+              <option>2001</option>
+            </select>
+          </form>
         </div>
       `;
       const document = new JSDOM(html).window.document;
