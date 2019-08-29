@@ -4,7 +4,7 @@ import * as assert from "assert";
 import { JSDOM } from "jsdom";
 import * as _ from "lodash";
 
-describe("parser", () => {
+describe("parser.elements", () => {
   describe("parseSelect", () => {
     it("succeeds", () => {
       const html = `

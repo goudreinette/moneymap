@@ -3,47 +3,38 @@ import { JSDOM } from "jsdom";
 import * as _ from "lodash";
 import * as parser from "./parser";
 import * as querystring from "querystring";
-
-type Node = { tag: "Organisation" } | { tag: "Individual" };
-
-type Edge = { cycle: number; money: number };
-
-type NodeId = string;
-
-type Graph = {
-  nodes: Map<NodeId, Node>;
-  edges: Array<{ from: NodeId; to: NodeId; label: Edge }>;
-};
+import * as types from "../types";
 
 const parseDocument = (body: string): Document =>
   new JSDOM(body).window.document;
 
-const passOrThrow = (x: any) => {
-  if (!x) throw "";
-  return x;
-};
-
-const api = {
-  openSecrets: {
-    orgs: {
-      list: ({ cycle }: { cycle?: number }) => ({
-        method: "get",
-        uri: "https://www.opensecrets.org/orgs/list.php"
-      })
-    }
-  }
-};
-
 export const getCycles = (): Promise<Array<number>> =>
-  request(api.openSecrets.orgs.list({}))
+  request
+    .get({ url: "https://www.opensecrets.org/orgs/list.php" })
     .then(parseDocument)
     .then(parser.parseCycles);
 
-export const getOrganisationIds = ({
+export const getOrganisations = ({
   cycle
 }: {
   cycle: number;
-}): Promise<Array<string>> =>
-  request(api.openSecrets.orgs.list({ cycle }))
+}): Promise<Array<types.Organisation>> =>
+  request
+    .get({ url: "https://www.opensecrets.org/orgs/list.php", qs: { cycle } })
     .then(parseDocument)
-    .then(parser.parseOrganisationIds);
+    .then(parser.parseOrganisations);
+
+export const getRecipients = ({
+  id,
+  cycle
+}: {
+  id: string;
+  cycle: number;
+}): Promise<Array<types.Recipient>> =>
+  request
+    .get({
+      url: "https://www.opensecrets.org/orgs/summary.php",
+      qs: { id, cycle }
+    })
+    .then(parseDocument)
+    .then(parser.parseRecipients);
