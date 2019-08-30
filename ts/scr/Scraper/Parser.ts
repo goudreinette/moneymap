@@ -40,7 +40,7 @@ export const parseOrganisations = (node: ParentNode): Array<Organisation> => {
 export const parseIndividual = (
   row: Array<HTMLTableDataCellElement>
 ): Individual => {
-  const regexMember = /([^,]+), ([^(]+)\(([RD])-([A-Z]+)\)/;
+  const regexMember = /([^,]+), ([^(]+)\(([A-Z])(?:-([A-Z]+))?\)/;
   const [chamber, member] = row;
 
   const subject = member.textContent || "";
@@ -48,8 +48,14 @@ export const parseIndividual = (
   if (!result) throw new Error(errors.NO_REGEX_MATCH(regexMember, subject));
   const [_, surname, prename, party, state] = result;
 
-  const link = Dom.parseLink(member);
-  const url_ = url.parse(link.href, true);
+  let id;
+  try {
+    const link = Dom.parseLink(member);
+    const url_ = url.parse(link.href, true);
+    id = parseIdLink(url_);
+  } catch (e) {
+    id = `NO_ID_${chamber.textContent || ""}_${member.textContent || ""}`;
+  }
 
   return {
     prename: prename.trim(),
@@ -57,7 +63,7 @@ export const parseIndividual = (
     chamber: chamber.textContent || "",
     state,
     party,
-    id: parseIdLink(url_)
+    id
   };
 };
 
@@ -65,14 +71,19 @@ export const parseRecipients = (node: ParentNode): Array<Recipient> => {
   const selector = "#profileLeftColumn";
   const elem = node.querySelector(selector);
   if (!elem) throw new Error(errors.NOT_FOUND(selector));
-  const table = Dom.parseTable(elem, ".datadisplay:nth-of-type(4)");
 
-  return _.dropRight(table, 1).map(row => {
-    return {
-      individual: parseIndividual(row),
-      money: parseMoney(row[2].textContent || "")
-    };
-  });
+  try {
+    const table = Dom.parseTable(elem, "h2 + table.datadisplay");
+
+    return _.dropRight(table, 1).map(row => {
+      return {
+        individual: parseIndividual(row),
+        money: parseMoney(row[2].textContent || "")
+      };
+    });
+  } catch (e) {
+    return [];
+  }
 };
 
 export const parseMoney = (value: string): number => {
