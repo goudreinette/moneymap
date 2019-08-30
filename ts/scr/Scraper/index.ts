@@ -8,14 +8,14 @@ type Config = {
 
 const config: Config = {
   size: process.env.SIZE ? parseInt(process.env.SIZE, 10) : undefined,
-  outPath: process.env.OUT_PATH || "data.json"
+  outPath: process.env.OUT_PATH || "./data.json"
 };
 
 const main = (): Promise<void> => {
   return Graph.getGraph(config.size).then(graph => {
     const graphData = Graph.toGraphData(graph);
 
-    fs.writeFileSync(JSON.stringify(graphData, null, 2), config.outPath);
+    fs.writeFileSync(config.outPath, JSON.stringify(graphData, null, 2));
   });
 };
 
