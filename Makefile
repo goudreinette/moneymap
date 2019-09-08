@@ -17,7 +17,10 @@ docs:
 	npx -c 'cd elm; elm-doc-preview --no-browser'
 
 # Run the test suite
-test:
+test: test-ts test-elm
+
+# Run the Elm test suite
+test-elm:
 	npx -c 'cd elm; elm-verify-examples'
 	npx -c 'cd elm; elm-test'
 
@@ -27,7 +30,7 @@ test-ts:
 
 # Scrape data from `opensecrets.org`
 scrape:
-	OUT_FILE=data/opensecrets.json npx ts-node ts/scr/Scraper/index.ts
+	OUT_PATH=data/opensecrets.json npx ts-node ts/scr/Scraper/index.ts
 
 # Run the test suite in watch mode
 test_watch:
